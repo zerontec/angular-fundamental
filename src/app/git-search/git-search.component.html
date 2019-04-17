@@ -1,0 +1,21 @@
+
+
+<input name="query" placeholder="Enter search Here" [(ngModel)]="searchQuery">
+   <button (click)="gitSearch()">Submit</button> 
+<div *ngIf= "searchResults else elseBlock"  >
+<h3 class="total">Resultado Total: {{searchResults.total_count}}</h3>
+<ul class="list">
+<li [ngStyle]= "{'background-color' : (i % 2  === 0) ? 'silver' : 'white'}" class="list_item" *ngFor=" let result of searchResults.items; index as i;">
+<a [href]= "result.html_url">
+<img class="avatar" [src]= "result.owner.avatar_url" />
+<h4 class="title"> {{result.name}}
+<small>by {{result.owner.login | uppercase}}</small>
+</h4>
+</a>
+<p class="description"> {{result.description}}</p>
+<p> Created On: {{result.created_at }} </p>
+
+</li>
+</ul>
+</div>
+<ng-template #elseBlock>Cargando...</ng-template>
