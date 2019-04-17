@@ -12,11 +12,15 @@ import { NoFoundComponent } from './no-found/no-found.component';
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent ,
   },
-  { path: 'search', component: GitSearchComponent,
-    data: { 
-      title: 'Git Search'
-    }
+  { path: 'search', 
+    redirectTo: '/search/angular', // no es necesario usa el atributo componente cuando se usa redireccioanmiento
+   pathMatch: 'full'
   },
+{ path: 'search/:query',
+component: GitSearchComponent,
+ data:{ title: 'Git Search'}
+},
+
   { path: '**', component: NoFoundComponent }
 ];
 @NgModule({
